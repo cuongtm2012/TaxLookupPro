@@ -125,10 +125,17 @@ body {
     box-shadow: none;
 }
 
-.copy-btn:hover {
+.copy-btn:hover:not(:disabled) {
     background: linear-gradient(135deg, #1e7e34, #155724);
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.copy-btn:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
 }
 
 .copy-btn.copied {

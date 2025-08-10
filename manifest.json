@@ -1,18 +1,13 @@
 {
   "manifest_version": 3,
-  "name": "VietQR Tax ID Lookup",
+  "name": "Tax ID Lookup",
   "version": "1.0.0",
-  "description": "Look up Vietnamese company information using tax IDs via the VietQR API",
-  "permissions": [
-    "storage",
-    "clipboardWrite"
-  ],
-  "host_permissions": [
-    "https://api.vietqr.io/*"
-  ],
+  "description": "Look up Vietnamese company information using tax IDs - cuongtm2012@gmail.com",
+  "permissions": ["storage", "clipboardWrite"],
+  "host_permissions": ["https://api.vietqr.io/*"],
   "action": {
     "default_popup": "popup.html",
-    "default_title": "VietQR Tax ID Lookup",
+    "default_title": "Tax ID Lookup. CuongTM",
     "default_icon": {
       "16": "icons/icon16.svg",
       "32": "icons/icon32.svg",

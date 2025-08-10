@@ -69,7 +69,7 @@ class VietQRTaxLookup {
     clearMessages() {
         this.errorMessage.classList.add('hidden');
         this.results.classList.add('hidden');
-        this.copyBtn.classList.add('hidden');
+        this.copyBtn.disabled = true;
         this.currentResults = [];
     }
 
@@ -82,9 +82,9 @@ class VietQRTaxLookup {
     showResults() {
         this.results.classList.remove('hidden');
         this.errorMessage.classList.add('hidden');
-        // Show copy button if there are successful results
+        // Enable copy button if there are successful results
         if (this.currentResults.some(r => r.success)) {
-            this.copyBtn.classList.remove('hidden');
+            this.copyBtn.disabled = false;
         }
     }
 
