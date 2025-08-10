@@ -1,13 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
   <defs>
     <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#007bff;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#0056b3;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#28a745;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e7e34;stop-opacity:1" />
     </linearGradient>
   </defs>
   <rect width="128" height="128" rx="20" fill="url(#grad1)"/>
-  <path d="M20 36h88v8H20v-8zm0 16h88v8H20v-8zm0 16h88v8H20v-8zm0 16h60v8H20v-8z" fill="white"/>
-  <circle cx="96" cy="88" r="12" fill="white"/>
-  <path d="M90 88l6 6 10-10" stroke="#007bff" stroke-width="4" fill="none"/>
-  <text x="64" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white" font-weight="bold">VietQR</text>
+  <!-- Tax document icon -->
+  <rect x="20" y="20" width="54" height="72" rx="4" fill="white"/>
+  <path d="M28 36h38v4H28v-4zm0 8h38v4H28v-4zm0 8h32v4H28v-4zm0 8h28v4H28v-4zm0 8h24v4H28v-4z" fill="#28a745"/>
+  <!-- Search magnifying glass -->
+  <circle cx="90" cy="72" r="16" stroke="white" stroke-width="6" fill="none"/>
+  <path d="M102 84l12 12" stroke="white" stroke-width="6"/>
+  <!-- Dollar sign for tax -->
+  <text x="47" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#28a745" font-weight="bold">$</text>
+  <!-- Tax ID text -->
+  <text x="64" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white" font-weight="bold">TAX ID</text>
 </svg>
