@@ -31,9 +31,17 @@ class VietQRTaxLookup {
 
     async loadSavedInput() {
         try {
-            const result = await chrome.storage.local.get(['lastTaxInput']);
-            if (result.lastTaxInput) {
-                this.taxInput.value = result.lastTaxInput;
+            if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+                const result = await chrome.storage.local.get(['lastTaxInput']);
+                if (result.lastTaxInput) {
+                    this.taxInput.value = result.lastTaxInput;
+                }
+            } else {
+                // Fallback to localStorage for testing in regular browser
+                const savedInput = localStorage.getItem('lastTaxInput');
+                if (savedInput) {
+                    this.taxInput.value = savedInput;
+                }
             }
         } catch (error) {
             console.log('Could not load saved input:', error);
@@ -42,7 +50,12 @@ class VietQRTaxLookup {
 
     async saveInput(input) {
         try {
-            await chrome.storage.local.set({ lastTaxInput: input });
+            if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+                await chrome.storage.local.set({ lastTaxInput: input });
+            } else {
+                // Fallback to localStorage for testing in regular browser
+                localStorage.setItem('lastTaxInput', input);
+            }
         } catch (error) {
             console.log('Could not save input:', error);
         }

@@ -1,43 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VietQR Tax ID Lookup</title>
-    <link rel="stylesheet" href="popup.css">
-</head>
-<body>
-    <div class="container">
-        <header class="header">
-            <h1>VietQR Tax ID Lookup</h1>
-        </header>
-        
-        <form id="taxForm" class="form">
-            <div class="input-group">
-                <label for="taxInput">Enter Tax IDs separated by ";"</label>
-                <textarea 
-                    id="taxInput" 
-                    placeholder="e.g. 0316794479; 0100100101; 0200200202"
-                    rows="3"
-                    maxlength="500"
-                ></textarea>
-                <div class="input-hint">Enter one or more Vietnamese tax codes separated by semicolons</div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tax ID Lookup</title>
+        <link rel="stylesheet" href="popup.css" />
+    </head>
+    <body>
+        <div class="container">
+            <header class="header">
+                <h1>Tax ID Lookup</h1>
+            </header>
+
+            <form id="taxForm" class="form">
+                <div class="input-group">
+                    <label for="taxInput">Enter Tax IDs separated by ";"</label>
+                    <textarea
+                        id="taxInput"
+                        placeholder="e.g. 0316794479; 0100100101; 0200200202"
+                        rows="3"
+                        maxlength="500"
+                    ></textarea>
+                    <div class="input-hint">
+                        Enter one or more Vietnamese tax codes separated by
+                        semicolons
+                    </div>
+                </div>
+
+                <button type="submit" id="submitBtn" class="submit-btn">
+                    <span class="btn-text">Submit</span>
+                    <div class="spinner hidden" id="spinner"></div>
+                </button>
+            </form>
+
+            <div id="results" class="results hidden">
+                <h2>Results:</h2>
+                <div id="resultsContent" class="results-content"></div>
             </div>
-            
-            <button type="submit" id="submitBtn" class="submit-btn">
-                <span class="btn-text">Submit</span>
-                <div class="spinner hidden" id="spinner"></div>
-            </button>
-        </form>
-        
-        <div id="results" class="results hidden">
-            <h2>Results:</h2>
-            <div id="resultsContent" class="results-content"></div>
+
+            <div id="errorMessage" class="error-message hidden"></div>
         </div>
-        
-        <div id="errorMessage" class="error-message hidden"></div>
-    </div>
-    
-    <script src="popup.js"></script>
-</body>
+
+        <script src="popup.js"></script>
+    </body>
 </html>
