@@ -1,0 +1,253 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+.container {
+    width: 400px;
+    min-height: 300px;
+    padding: 16px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.header h1 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.form {
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 16px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #495057;
+}
+
+#taxInput {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid #dee2e6;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 80px;
+    transition: border-color 0.2s ease;
+}
+
+#taxInput:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.input-hint {
+    font-size: 12px;
+    color: #6c757d;
+    margin-top: 4px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.submit-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #0056b3, #004085);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+.submit-btn:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.results {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #e9ecef;
+}
+
+.results h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 12px;
+}
+
+.results-content {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.company-result {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 12px;
+    transition: box-shadow 0.2s ease;
+}
+
+.company-result:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.company-result:last-child {
+    margin-bottom: 0;
+}
+
+.tax-id {
+    font-weight: 600;
+    color: #007bff;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.company-name {
+    font-weight: 500;
+    color: #2c3e50;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+.company-detail {
+    font-size: 12px;
+    color: #6c757d;
+    margin-bottom: 2px;
+    line-height: 1.3;
+}
+
+.company-detail strong {
+    color: #495057;
+}
+
+.error-result {
+    background: #fff5f5;
+    border: 1px solid #fed7d7;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 12px;
+    color: #c53030;
+}
+
+.error-result .tax-id {
+    color: #c53030;
+}
+
+.error-message {
+    background: #fff5f5;
+    border: 1px solid #fed7d7;
+    border-radius: 6px;
+    padding: 12px;
+    color: #c53030;
+    font-size: 13px;
+    margin-top: 12px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Scrollbar styling for results */
+.results-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.results-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.results-content::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.results-content::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Success animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.company-result {
+    animation: fadeIn 0.3s ease forwards;
+}
+
+/* Rate limit warning */
+.rate-limit-warning {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 6px;
+    padding: 12px;
+    color: #856404;
+    font-size: 13px;
+    margin-top: 12px;
+}
