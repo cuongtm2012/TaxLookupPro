@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "description": "Look up Vietnamese company information using tax IDs via the VietQR API",
   "permissions": [
-    "storage"
+    "storage",
+    "clipboardWrite"
   ],
   "host_permissions": [
     "https://api.vietqr.io/*"

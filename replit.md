@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a Chrome browser extension that allows users to look up Vietnamese company information using tax IDs through the VietQR API. The extension provides a simple popup interface where users can enter multiple tax codes separated by semicolons and retrieve company details. It features local storage for user convenience, loading animations, and error handling for a smooth user experience.
+This is a Chrome browser extension that allows users to look up Vietnamese company information using tax IDs through the VietQR API. The extension provides a simple popup interface where users can enter multiple tax codes separated by semicolons and retrieve company details. It features local storage for user convenience, loading animations, error handling, and a "Copy to Excel" function that exports results in tab-separated format for easy pasting into spreadsheet applications.
 
 ## User Preferences
 

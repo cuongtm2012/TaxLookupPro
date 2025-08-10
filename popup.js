@@ -9,14 +9,19 @@ class VietQRTaxLookup {
         this.taxForm = document.getElementById('taxForm');
         this.taxInput = document.getElementById('taxInput');
         this.submitBtn = document.getElementById('submitBtn');
+        this.copyBtn = document.getElementById('copyBtn');
         this.spinner = document.getElementById('spinner');
         this.btnText = document.querySelector('.btn-text');
         this.results = document.getElementById('results');
         this.resultsContent = document.getElementById('resultsContent');
         this.errorMessage = document.getElementById('errorMessage');
+        
+        // Store current results for copying
+        this.currentResults = [];
 
         // Event listeners
         this.taxForm.addEventListener('submit', (e) => this.handleSubmit(e));
+        this.copyBtn.addEventListener('click', () => this.copyToClipboard());
         this.taxInput.addEventListener('input', () => this.clearMessages());
         this.taxInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
@@ -64,6 +69,8 @@ class VietQRTaxLookup {
     clearMessages() {
         this.errorMessage.classList.add('hidden');
         this.results.classList.add('hidden');
+        this.copyBtn.classList.add('hidden');
+        this.currentResults = [];
     }
 
     showError(message) {
@@ -75,6 +82,10 @@ class VietQRTaxLookup {
     showResults() {
         this.results.classList.remove('hidden');
         this.errorMessage.classList.add('hidden');
+        // Show copy button if there are successful results
+        if (this.currentResults.some(r => r.success)) {
+            this.copyBtn.classList.remove('hidden');
+        }
     }
 
     setLoading(isLoading) {
@@ -184,6 +195,69 @@ class VietQRTaxLookup {
         return div.innerHTML;
     }
 
+    async copyToClipboard() {
+        if (!this.currentResults || this.currentResults.length === 0) {
+            this.showError('No results to copy.');
+            return;
+        }
+
+        try {
+            // Create tab-separated values (TSV) format for Excel
+            const headers = ['Tax ID', 'Company Name', 'International Name', 'Short Name', 'Address', 'Status'];
+            let tsvContent = headers.join('\t') + '\n';
+
+            // Process each result
+            this.currentResults.forEach(result => {
+                if (result.success && result.data) {
+                    const data = result.data;
+                    const row = [
+                        result.taxCode || '',
+                        this.cleanForExcel(data.name || ''),
+                        this.cleanForExcel(data.internationalName || ''),
+                        this.cleanForExcel(data.shortName || ''),
+                        this.cleanForExcel(data.address || ''),
+                        'Active'
+                    ];
+                    tsvContent += row.join('\t') + '\n';
+                } else {
+                    // Include failed lookups with error info
+                    const row = [
+                        result.taxCode || '',
+                        'Error: ' + (result.error || 'Unknown error'),
+                        '',
+                        '',
+                        '',
+                        'Error'
+                    ];
+                    tsvContent += row.join('\t') + '\n';
+                }
+            });
+
+            // Copy to clipboard
+            await navigator.clipboard.writeText(tsvContent);
+            
+            // Show visual feedback
+            const originalText = this.copyBtn.textContent;
+            this.copyBtn.textContent = 'Copied!';
+            this.copyBtn.classList.add('copied');
+            
+            setTimeout(() => {
+                this.copyBtn.textContent = originalText;
+                this.copyBtn.classList.remove('copied');
+            }, 2000);
+
+        } catch (error) {
+            this.showError('Failed to copy to clipboard. Please try again.');
+            console.error('Copy failed:', error);
+        }
+    }
+
+    cleanForExcel(text) {
+        if (!text) return '';
+        // Remove tabs, newlines, and excessive spaces that might break Excel formatting
+        return text.replace(/[\t\n\r]/g, ' ').replace(/\s+/g, ' ').trim();
+    }
+
     async handleSubmit(e) {
         e.preventDefault();
 
@@ -238,6 +312,9 @@ class VietQRTaxLookup {
                 }
             }
 
+            // Store results for copying
+            this.currentResults = results;
+            
             // Display results
             this.resultsContent.innerHTML = '';
             

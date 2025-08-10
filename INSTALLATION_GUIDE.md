@@ -52,10 +52,11 @@
 
 ## Features
 - Look up multiple tax IDs at once (separate with semicolons)
+- **Copy to Excel** - Export results as tab-separated values for easy pasting into Excel or Google Sheets
 - Saves your last search for convenience
-- Shows company name, address, and other details
+- Shows company name, international name, address, and other details
 - Handles errors gracefully
-- Clean, professional interface
+- Clean, professional interface with responsive design
 
 ## Need Help?
 If you have issues installing or using the extension, check that:
